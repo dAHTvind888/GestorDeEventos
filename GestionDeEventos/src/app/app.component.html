@@ -1,0 +1,49 @@
+<div class="contenedor">
+  <h1>Eventos:</h1>
+  <button (click)="setMostrarFormulario(true)">Nuevo Evento</button><br />
+  @if(getMostrarFormulario()){
+  <input type="text" placeholder="Nombre" [(ngModel)]="getNuevoEvento().nombre" /><br />
+  <input type="text" placeholder="Descripcion" [(ngModel)]="getNuevoEvento().descripcion" /><br />
+  <input type="text" placeholder="Fecha" [(ngModel)]="getNuevoEvento().fecha" /><br />
+  <p>Tipo:</p>
+  <label>
+    <input type="radio" name="tipo" value="Conferencia" [(ngModel)]="getNuevoEvento().tipo" />
+    Conferencia
+  </label>
+  <label>
+    <input type="radio" name="tipo" value="Taller" [(ngModel)]="getNuevoEvento().tipo" />
+    Taller
+  </label>
+  <label>
+    <input type="radio" name="tipo" value="Feria" [(ngModel)]="getNuevoEvento().tipo" />
+    Feria
+  </label>
+  <p>Estado:</p>
+  <label>
+    <input type="radio" name="estado" value="Borrador" [(ngModel)]="getNuevoEvento().estado" />
+    Borrador
+  </label>
+  <label>
+    <input type="radio" name="estado" value="Publicado" [(ngModel)]="getNuevoEvento().estado" />
+    Publicado
+  </label>
+  <label>
+    <input type="radio" name="estado" value="Cancelado" [(ngModel)]="getNuevoEvento().estado" />
+    Cancelado
+  </label>
+  <br />
+  <button (click)="agregarEvento()">Guardar Evento</button>
+  <button (click)="setMostrarFormulario(false)">Cancelar</button>
+  }
+</div>
+<div class="eventos">
+  @for(evento of getArrEventos(); track evento){
+    <h2>{{evento.nombre}}</h2>
+    <p>{{evento.descripcion}}</p>
+    <p>Fecha: {{evento.fecha}}</p>
+    <p>Tipo: {{evento.tipo}}</p>
+    <p>Estado: {{evento.estado}}</p>
+    <button (click)="eliminarEvento(evento)">Eliminar Evento</button>
+    <button (click)="editarEvento(evento)">Editar Evento</button>
+  }
+</div>
